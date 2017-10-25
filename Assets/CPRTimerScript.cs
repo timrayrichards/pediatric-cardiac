@@ -1,36 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class CPRTimerScript : MonoBehaviour {
-
+    
     public Text timerText;
     private float timer;
+    private Canvas canvas;
     private bool wasEnabled;
-    private bool endReached;
-    private int delay;
-
+    private Button nextButton;
+  
     void Start() {
          
-        timerText = GetComponent<Text>();
         timer = 120;
+        canvas = GetComponentInParent<Canvas>();
         wasEnabled = false;
-        endReached = false;
+        timerText = GetComponent<Text>();
+
+        GameObject card = timerText.transform.parent.gameObject.transform.parent.gameObject;
+        nextButton = card.transform.Find("Buttons/Footer").GetComponent<Button>();
+        nextButton.onClick.AddListener(NextClicked);
     }
-    
+
     void Update () {
-      
-        if (endReached && delay > 0)
-        {
-            --delay;
-            return;
-        }
 
-        endReached = false;
-        delay = 200;
-
-        Canvas canvas = GetComponentInParent<Canvas>();
         if (canvas.isActiveAndEnabled) wasEnabled = true;
         if (!wasEnabled) return;
 
@@ -39,13 +31,11 @@ public class CPRTimerScript : MonoBehaviour {
             timerText.text = "Time remaining: " + timer.ToString("F0");
             timer -= Time.deltaTime;
         }
-        else
-        {
-            
-            wasEnabled = false;
-            timerText.text = "CPR step complete\n Proceed to next step";
-            timer = 120;
-            endReached = true;
-        }
+    }
+
+    void NextClicked()
+    {
+        timer = 120;
+        wasEnabled = false;
     }
 }
