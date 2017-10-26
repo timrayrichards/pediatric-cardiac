@@ -7,7 +7,8 @@ public class EndBackRouteScript : MonoBehaviour {
     private Button noButton;
     private Button endBackButton;
     
-    void Start () {
+    void Start()
+    {
 
         canvas = GetComponentInParent<Canvas>();
 
@@ -21,7 +22,7 @@ public class EndBackRouteScript : MonoBehaviour {
 
     void NoClicked()
     {
-        endBackButton.onClick.RemoveListener(SetCanvas);
+        endBackButton.onClick.RemoveAllListeners();
         endBackButton.onClick.AddListener(SetCanvas);
     }
 

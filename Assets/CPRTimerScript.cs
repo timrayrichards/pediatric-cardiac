@@ -34,6 +34,9 @@ public class CPRTimerScript : MonoBehaviour {
         {
             timerText.text = "Time remaining: " + timer.ToString("F0");
             timer -= Time.deltaTime;
+        } else
+        {
+            timerText.text = "CPR step complete";
         }
     }
 
