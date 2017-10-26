@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class CPRTimerScript : MonoBehaviour {
-    
+public class CPRTimerScript : MonoBehaviour
+{    
     public Text timerText;
     private Canvas canvas;
     private Button nextButton;
@@ -10,7 +10,8 @@ public class CPRTimerScript : MonoBehaviour {
     private bool wasEnabled;
     private float timer;
 
-    void Start() {
+    void Start()
+    {
          
         timer = 120;
         canvas = GetComponentInParent<Canvas>();
@@ -25,7 +26,8 @@ public class CPRTimerScript : MonoBehaviour {
         backButton.onClick.AddListener(NextClicked);
     }
 
-    void Update () {
+    void Update ()
+    {
 
         if (canvas.isActiveAndEnabled) wasEnabled = true;
         if (!wasEnabled) return;

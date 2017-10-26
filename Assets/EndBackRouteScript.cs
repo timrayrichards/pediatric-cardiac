@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class EndBackRouteScript : MonoBehaviour {
-
-    private Canvas canvas;
+public class EndBackRouteScript : MonoBehaviour
+{
+    private Canvas origin;
     private Button noButton;
     private Button endBackButton;
     
     void Start()
     {
 
-        canvas = GetComponentInParent<Canvas>();
+        origin = GetComponentInParent<Canvas>();
 
         noButton = GetComponent<Button>();
         noButton.onClick.AddListener(NoClicked);
@@ -28,6 +28,6 @@ public class EndBackRouteScript : MonoBehaviour {
 
     void SetCanvas()
     {
-        canvas.enabled = true;
+        origin.enabled = true;
     }
 }
