@@ -17,7 +17,7 @@ public class EndBackRouteScript : MonoBehaviour
 
         GameObject goButtons = noButton.transform.parent.gameObject.transform.parent.gameObject;
         GameObject goCards = goButtons.transform.parent.gameObject.transform.parent.gameObject;
-        endBackButton = goCards.transform.Find("END/Buttons/Back").GetComponent<Button>();
+        endBackButton = goCards.transform.Find("END/Buttons/Previous").GetComponent<Button>();
     }
 
     void NoClicked()

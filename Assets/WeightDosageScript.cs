@@ -33,9 +33,9 @@ public class WeightDosageScript : MonoBehaviour {
         shock_5_2 = goCards.transform.Find("SHK-5-2/Text/Subheader").GetComponent<Text>();
         shock_7 = goCards.transform.Find("SHK-7/Text/Subheader").GetComponent<Text>();
 
-        epinephrine = goCards.transform.Find("EPINEPHRINE-DETAIL/Text/Subheader").GetComponent<Text>();
-        amiodarone = goCards.transform.Find("AMIODARONE-DETAIL/Text/Subheader").GetComponent<Text>();
-        lidocaine = goCards.transform.Find("LIDOCAINE-DETAIL/Text/Subheader").GetComponent<Text>();
+        epinephrine = goCards.transform.Find("EPINEPHRINE-DETAIL/Text/Bullets").GetComponent<Text>();
+        amiodarone = goCards.transform.Find("AMIODARONE-DETAIL/Text/Bullets").GetComponent<Text>();
+        lidocaine = goCards.transform.Find("LIDOCAINE-DETAIL/Text/Bullets").GetComponent<Text>();
     }
 
     void setDosages()
@@ -53,9 +53,9 @@ public class WeightDosageScript : MonoBehaviour {
         shock_7.text = intervalDosage;
 
         //Set medicine dosages
-        epinephrine.text = "• " + calculateDosage(0.01) + " mg. Repeat every 3-5min\n• If no IO / IV access, may give endotracheal dose: " + calculateDosage(0.1) + " mg";
-        amiodarone.text = "• " + calculateDosage(5) + " mg bolus during cardiac arrest\n• May repeat up to 2 times for refractory VF/ pulseless VT";
-        lidocaine.text = "• Initial: " + calculateDosage(1) + " mg loading dose\n• Maintainence: [" + calculateDosage(20) + ", " + calculateDosage(50) + "] mcg per minute infusion\n(repeat bolus dose if infusion initiated > 15min after initial bolus therapy)";
+        epinephrine.text = "• " + calculateDosage(0.01) + " mg. Repeat\n  every 3-5min\n\n• If no IO / IV access, may\n  give endotracheal dose:\n  " + calculateDosage(0.1) + " mg";
+        amiodarone.text = "• " + calculateDosage(5) + " mg bolus\n  during cardiac arrest\n\n• May repeat up to 2 times\n  for refractory VF/ pulseless VT";
+        lidocaine.text = "• Initial: " + calculateDosage(1) + " mg\n  loading dose\n\n• Maintainence: [" + calculateDosage(20) + ", " + calculateDosage(50) + "]\n  mcg per minute infusion\n  (repeat bolus dose if infusion\n  initiated > 15min after initial\n  bolus therapy)";
     }
 
     string calculateDosage(double dosagePerKG)

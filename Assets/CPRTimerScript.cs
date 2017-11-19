@@ -19,10 +19,10 @@ public class CPRTimerScript : MonoBehaviour
         timerText = GetComponent<Text>();
 
         GameObject card = timerText.transform.parent.gameObject.transform.parent.gameObject;
-        nextButton = card.transform.Find("Buttons/Footer").GetComponent<Button>();
+        nextButton = card.transform.Find("Buttons/Next").GetComponent<Button>();
         nextButton.onClick.AddListener(NextClicked);
 
-        backButton = card.transform.Find("Buttons/Back").GetComponent<Button>();
+        backButton = card.transform.Find("Buttons/Previous").GetComponent<Button>();
         backButton.onClick.AddListener(NextClicked);
     }
 
