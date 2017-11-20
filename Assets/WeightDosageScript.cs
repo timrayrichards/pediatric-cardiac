@@ -53,20 +53,23 @@ public class WeightDosageScript : MonoBehaviour {
         string weightInputText = goWeightInput
                  .transform.Find("InputField/Text")
                  .GetComponent<Text>().text;
-        if (weightInputText == "")
+        if (weightInputText == "" 
+            || weightInputText == "-" 
+            || weightInputText == "."
+            || weightInputText == "-.")
         {
             title.enabled = true;
             cpr_1.enabled = false;
-            prompt.text = "Please enter a valid non-negative weight";
+            prompt.text = "Please enter a valid positive weight";
             return;
         }
 
         weight = double.Parse(weightInputText);
-        if (weight < 0)
+        if (weight <= 0)
         {
             title.enabled = true;
             cpr_1.enabled = false;
-            prompt.text = "Please enter a valid non-negative weight";
+            prompt.text = "Please enter a valid positive weight";
             return;
         }
 
