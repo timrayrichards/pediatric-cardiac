@@ -5,7 +5,7 @@
 4. If you see a "certificate error" in your browser, [fix it by creating a trust relationship with the device](https://developer.microsoft.com/en-us/windows/mixed-reality/using_the_windows_device_portal#security_certificate).
 5. Navigate to the Apps page by selecting ["Apps" under "System" in the sidebar](https://developer.microsoft.com/en-us/windows/mixed-reality/using_the_windows_device_portal#apps).
 6. Select 'Browse...' under 'Install app'.
-7. Select 'UI Canvas_0.1.1.0_x86.appxbundle' on your system.
+7. Select 'UI Canvas_1.0.0.0_x86.appxbundle' on your system.
 8. Select 'Go' under 'Deploy'.
 9. After installation has finished, turn on your HoloLens and locate the app titled "UI Canvas".
 10. Start the app.
