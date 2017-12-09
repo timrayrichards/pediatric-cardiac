@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class WeightDosageScript : MonoBehaviour {
 
+    // Used to make sure keyboard closes if 'Go' button is clicked
+    public GameObject keyBoard;
+
     private Button startButton;
     private GameObject goWeightInput;
     private double weight;
@@ -50,6 +53,8 @@ public class WeightDosageScript : MonoBehaviour {
 
     void setDosages()
     {
+        keyBoard.SetActive(false); // disable keyboard when "Go" is clicked
+
         string weightInputText = goWeightInput
                  .transform.Find("InputField/Text")
                  .GetComponent<Text>().text;
