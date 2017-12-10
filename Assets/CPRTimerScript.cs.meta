@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: d8e6f7db6b7a8774c8770fa5d66218bc
-timeCreated: 1508315041
+timeCreated: 1512884822
 licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - timerText: {instanceID: 0}
+  - timerEndSound: {fileID: 82806976551885704, guid: d6856af9d60fe05449bbf152e87df7e7,
+      type: 2}
+  - click1: {fileID: 8300000, guid: 3664ae3e49b51844cade70b60023a72a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -13290,8 +13290,9 @@ CanvasRenderer:
 --- !u!1 &523105932
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 1670726450017228, guid: d6856af9d60fe05449bbf152e87df7e7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1141915759}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 523105934}
@@ -13306,8 +13307,9 @@ GameObject:
 --- !u!82 &523105933
 AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 82806976551885704, guid: d6856af9d60fe05449bbf152e87df7e7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1141915759}
   m_GameObject: {fileID: 523105932}
   m_Enabled: 1
   serializedVersion: 4
@@ -13386,8 +13388,9 @@ AudioSource:
 --- !u!4 &523105934
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 4776739577452982, guid: d6856af9d60fe05449bbf152e87df7e7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1141915759}
   m_GameObject: {fileID: 523105932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0044022235, y: 0.038224723, z: -0.0056191683}
@@ -27945,6 +27948,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 0}
+  timerEndSound: {fileID: 523105933}
+  click1: {fileID: 8300000, guid: 3664ae3e49b51844cade70b60023a72a, type: 3}
 --- !u!114 &1110107722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28532,6 +28537,48 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1137588303}
+--- !u!1001 &1141915759
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4776739577452982, guid: d6856af9d60fe05449bbf152e87df7e7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.0044022235
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776739577452982, guid: d6856af9d60fe05449bbf152e87df7e7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.038224723
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776739577452982, guid: d6856af9d60fe05449bbf152e87df7e7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.0056191683
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776739577452982, guid: d6856af9d60fe05449bbf152e87df7e7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776739577452982, guid: d6856af9d60fe05449bbf152e87df7e7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776739577452982, guid: d6856af9d60fe05449bbf152e87df7e7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776739577452982, guid: d6856af9d60fe05449bbf152e87df7e7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776739577452982, guid: d6856af9d60fe05449bbf152e87df7e7, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d6856af9d60fe05449bbf152e87df7e7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1145375122
 GameObject:
   m_ObjectHideFlags: 0
@@ -40030,6 +40077,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 0}
+  timerEndSound: {fileID: 523105933}
+  click1: {fileID: 8300000, guid: 3664ae3e49b51844cade70b60023a72a, type: 3}
 --- !u!114 &1600081792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40850,6 +40899,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 0}
+  timerEndSound: {fileID: 523105933}
+  click1: {fileID: 8300000, guid: 3664ae3e49b51844cade70b60023a72a, type: 3}
 --- !u!114 &1629226852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52577,6 +52628,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 0}
+  timerEndSound: {fileID: 523105933}
+  click1: {fileID: 8300000, guid: 3664ae3e49b51844cade70b60023a72a, type: 3}
 --- !u!114 &2089187823
 MonoBehaviour:
   m_ObjectHideFlags: 0

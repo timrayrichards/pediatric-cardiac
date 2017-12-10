@@ -4,16 +4,20 @@ using UnityEngine.UI;
 public class CPRTimerScript : MonoBehaviour
 {    
     public Text timerText;
+    public AudioSource timerEndSound;
+    public AudioClip click1;
     private Canvas canvas;
     private Button nextButton;
     private Button backButton;
     private bool wasEnabled;
+    private bool soundPlayed;
     private float timer;
 
     void Start()
     {
          
         timer = 120;
+        soundPlayed = false;
         canvas = GetComponentInParent<Canvas>();
         wasEnabled = false;
         timerText = GetComponent<Text>();
@@ -39,6 +43,12 @@ public class CPRTimerScript : MonoBehaviour
         } else
         {
             timerText.text = "CPR step complete";
+
+            if (!soundPlayed)
+            {
+                timerEndSound.PlayOneShot(click1);
+                soundPlayed = true;
+            }
         }
     }
 
