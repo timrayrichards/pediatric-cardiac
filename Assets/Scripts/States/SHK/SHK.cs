@@ -30,7 +30,7 @@ public class SHK : State
         AddTransitionBtnListener(next_btn, next_state);
     }
 
-    protected override void TransitionBegin()
+    protected override void TransitionedTo()
     {
         if (!shocked)
         {

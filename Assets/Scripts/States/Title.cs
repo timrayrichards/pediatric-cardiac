@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Title : State
 {
     public Keyboard keyboard;
+    public GameObject rhythm_indicator;
     private Text input_txt, feedback_txt;
     private State next_state;
     private SetDetailDosages set_detail_dosages;
@@ -21,6 +22,7 @@ public class Title : State
         set_detail_dosages = GameObject.Find("Model").GetComponent<SetDetailDosages>();
         shock_dosage = GameObject.Find("Model").GetComponent<ShockDosage>(); 
         weight = 0;
+        rhythm_indicator.SetActive(false);
         window.SetActive(true);
 
         base.Awake();
@@ -51,6 +53,16 @@ public class Title : State
         }
         weight = double.Parse(input_txt.text);
         return true; 
+    }
+
+    protected override void TransitionedFrom()
+    {
+        rhythm_indicator.SetActive(true);
+    }
+
+    protected override void TransitionedTo()
+    {
+        rhythm_indicator.SetActive(false);
     }
 }
 

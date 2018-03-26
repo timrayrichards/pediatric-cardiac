@@ -9,23 +9,23 @@ public abstract class State : MonoBehaviour
 
     public virtual void Awake()
     {
-        audio_source = GameObject.Find("Utility/AudioSource").GetComponent<AudioSource>();
-        audio_clip = Resources.Load("click1") as AudioClip;
+        audio_source = GameObject.Find("Utility/NavAudioSource").GetComponent<AudioSource>();
+        audio_clip = Resources.Load("beep") as AudioClip;
     }
 
     protected void Transition(State nextState)
     {
         PlaySound();
         window.SetActive(false);
-        nextState.TransitionBegin();
-        TransitionEnd();
+        nextState.TransitionedTo();
+        TransitionedFrom();
         nextState.window.SetActive(true);
     }
 
     /* override in child for custom behavior 
      * called at the start and end of a transition */
-    protected virtual void TransitionBegin() {}
-    protected virtual void TransitionEnd() {}
+    protected virtual void TransitionedTo() {}
+    protected virtual void TransitionedFrom() {}
 
     protected void AddTransitionBtnListener(Button btn, State state)
     {
