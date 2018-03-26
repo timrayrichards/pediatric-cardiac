@@ -15,8 +15,8 @@ public class CprTimer : MonoBehaviour
         sound_played = false;
         timer_text = GetComponent<Text>();
 
-        audio_source = GameObject.Find("Utility/AudioSource").GetComponent<AudioSource>();
-        audio_clip = Resources.Load("timer_up") as AudioClip; 
+        audio_source = GameObject.Find("Utility/TimeUpAudioSource").GetComponent<AudioSource>();
+        audio_clip = Resources.Load("beep") as AudioClip; 
 
         AddNavButtonListeners();
     }
