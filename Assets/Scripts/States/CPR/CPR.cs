@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class CPR : State
 {
     /* assign in child */
-    protected State prev_state, next_state;
+    protected State next_state;
 
     /* assign in inspector */
     public List<GameObject> tasks = new List<GameObject>();
@@ -14,22 +14,16 @@ public class CPR : State
     /* child must call this after it sets above variables */
     public override void Awake()
     {
+        base.Awake();
+
         InitWindow("CPR");
-        AddNavButtonListeners();
+        AddTransition(next_state, Utility.TransitionType.Next);
+
         AddStaticDetailWindows();
         AddDynamicDetailWindows();
         AddTasks();
+
         window.SetActive(false);
-
-        base.Awake();
-    }
-
-    private void AddNavButtonListeners()
-    {
-        Button prev_btn = window.transform.Find("Nav/Previous").GetComponent<Button>();
-        Button next_btn = window.transform.Find("Nav/Next").GetComponent<Button>();
-        AddTransitionBtnListener(next_btn, next_state);
-        AddTransitionBtnListener(prev_btn, prev_state);
     }
 
     private void AddStaticDetailWindows()
@@ -62,5 +56,10 @@ public class CPR : State
         {
             Instantiate(task, parent);
         }
+    }
+
+    protected override void TransitionedTo(State prev_state, Utility.TransitionType type)
+    { 
+        Speak("Administer CPR for two minutes.");
     }
 }

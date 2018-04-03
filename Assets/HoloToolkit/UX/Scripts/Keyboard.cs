@@ -800,7 +800,7 @@ namespace HoloToolkit.UI.Keyboard
         public void Clear()
         {
             ResetKeyboardState();
-            InputField.MoveTextStart(false);
+
             InputField.text = "";
             m_CaretPosition = InputField.caretPosition;
         }

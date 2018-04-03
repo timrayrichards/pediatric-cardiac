@@ -1,20 +1,17 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class End : State
 {
+    public GameObject end_window;
+
     public override void Awake()
     {
-        InitWindow("End");
-        AddNavButtonListeners();
-        window.SetActive(false);
-
         base.Awake();
-    }
-
-    private void AddNavButtonListeners()
-    {
-        Button next_btn = window.transform.Find("Buttons/Next").GetComponent<Button>();
+        
+        InitWindow(end_window);
         State next_state = gameObject.GetComponent<Title>();
-        AddTransitionBtnListener(next_btn, next_state);
+        AddTransition(next_state, Utility.TransitionType.Next);
+
+        window.SetActive(false);  
     }
 }

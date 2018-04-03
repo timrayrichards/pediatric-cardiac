@@ -104,7 +104,6 @@ namespace HoloToolkit.Unity.InputModule
         {
             if (!IsBeingPlaced) { return; }
             Transform cameraTransform = CameraCache.Main.transform;
-
             Vector3 placementPosition = GetPlacementPosition(cameraTransform.position, cameraTransform.forward, DefaultGazeDistance);
 
             if (UseColliderCenter)

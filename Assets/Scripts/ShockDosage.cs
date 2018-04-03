@@ -4,7 +4,7 @@ public class ShockDosage : MonoBehaviour
 {
     private double weight;
     private int num_shocks;
-    private Utility utility; 
+    private Utility utility;
 
     public void Awake ()
     {
@@ -19,22 +19,54 @@ public class ShockDosage : MonoBehaviour
     }
 
     /* first SetWeight */
-    public string GetShockDosage()
+    public string GetShockDosage(bool verbose)
     {
         string result = "";
+    
+        if (verbose)
+        {
+            result += "Shock with "; 
+        }
         if (num_shocks == 0)
         {
-            result += utility.CalculateDosage(2, weight) + " J";
+            result = result + utility.CalculateDosage(2, weight);
         }
         else if (num_shocks == 1)
         {
-            result += utility.CalculateDosage(4, weight) + " J";
+            result = result + utility.CalculateDosage(4, weight);
         }
         else
         {
-            result += "[" + utility.CalculateDosage(4, weight) + ", " + utility.CalculateDosage(10, weight) + "] J";
+            if (verbose)
+            {
+                result = result + " between " + utility.CalculateDosage(4, weight) +
+                " and " + utility.CalculateDosage(10, weight); 
+            }
+            else
+            {
+                result = result + "[" + utility.CalculateDosage(4, weight) +
+                ", " + utility.CalculateDosage(10, weight) + "]";
+            }
         }
-        ++num_shocks; 
+        if (verbose)
+        {
+            result += " Jewels"; // for speech to text pronounciation
+        }
+        else
+        {
+            result += " J";
+        } 
         return result;
     }
+
+    public void AdminShock()
+    {
+        ++num_shocks;
+    }
+
+    public void InitDosage()
+    {
+        num_shocks = 0; 
+    }
+
 }

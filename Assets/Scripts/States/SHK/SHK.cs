@@ -8,34 +8,35 @@ public class SHK : State
     private bool shocked = false; 
 
     /* assign in child */
-    protected State prev_state, next_state; 
+    protected State next_state; 
 
     /* child must call this after it sets above states */
     public override void Awake()
     {
+        base.Awake();
+
         InitWindow("SHK");
-        AddNavButtonListeners();
+        AddTransition(next_state, Utility.TransitionType.Next);
+        
         shock_dosage_txt = window.transform.Find("ShockDosage").GetComponent<Text>();
         shock_dosage = GameObject.Find("Model").GetComponent<ShockDosage>(); 
+
         window.SetActive(false);
-
-        base.Awake();
     }
 
-    private void AddNavButtonListeners()
+    protected override void TransitionedTo(State prev_state, Utility.TransitionType type)
     {
-        Button prev_btn = window.transform.Find("Nav/Previous").GetComponent<Button>();
-        Button next_btn = window.transform.Find("Nav/Next").GetComponent<Button>();
-        AddTransitionBtnListener(prev_btn, prev_state);
-        AddTransitionBtnListener(next_btn, next_state);
-    }
-
-    protected override void TransitionedTo()
-    {
-        if (!shocked)
+        if (!shocked && type != Utility.TransitionType.Previous)
         {
-            shock_dosage_txt.text = shock_dosage.GetShockDosage();
+            shock_dosage_txt.text = shock_dosage.GetShockDosage(false);
+            Speak(shock_dosage.GetShockDosage(true));
+            shock_dosage.AdminShock();
             shocked = true; 
         }
+    }
+
+    protected override void TransitionedFrom()
+    {
+        shocked = false; 
     }
 }
