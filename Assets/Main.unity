@@ -4538,7 +4538,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyboard: {fileID: 175050590}
-  rhythm_indicator: {fileID: 1418560735}
   title_window: {fileID: 182870359}
 --- !u!114 &307522434
 MonoBehaviour:
@@ -28706,7 +28705,7 @@ Prefab:
     - target: {fileID: 224445816564656784, guid: 1809314c30f1dfc4a9c7e5c66fb28301,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 259
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224511855345435360, guid: 1809314c30f1dfc4a9c7e5c66fb28301,
         type: 2}
@@ -28716,7 +28715,7 @@ Prefab:
     - target: {fileID: 224511855345435360, guid: 1809314c30f1dfc4a9c7e5c66fb28301,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 58
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224470286697476602, guid: 1809314c30f1dfc4a9c7e5c66fb28301,
         type: 2}
@@ -28726,7 +28725,7 @@ Prefab:
     - target: {fileID: 224470286697476602, guid: 1809314c30f1dfc4a9c7e5c66fb28301,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1238545755014808, guid: 1809314c30f1dfc4a9c7e5c66fb28301, type: 2}
       propertyPath: m_IsActive
@@ -28735,7 +28734,7 @@ Prefab:
     - target: {fileID: 224730041804703930, guid: 1809314c30f1dfc4a9c7e5c66fb28301,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114042270431555844, guid: 1809314c30f1dfc4a9c7e5c66fb28301,
         type: 2}

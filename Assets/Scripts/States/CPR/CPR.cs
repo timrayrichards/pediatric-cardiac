@@ -11,6 +11,8 @@ public class CPR : State
     public List<GameObject> tasks = new List<GameObject>();
     public List<GameObject> details;
 
+    private GameObject rhythm_indicator; 
+
     /* child must call this after it sets above variables */
     public override void Awake()
     {
@@ -23,7 +25,14 @@ public class CPR : State
         AddDynamicDetailWindows();
         AddTasks();
 
+        rhythm_indicator = GameObject.Find("RhythmIndicator");
+        
         window.SetActive(false);
+    }
+
+    public void Start()
+    {
+        rhythm_indicator.SetActive(false);
     }
 
     private void AddStaticDetailWindows()
@@ -59,7 +68,13 @@ public class CPR : State
     }
 
     protected override void TransitionedTo(State prev_state, Utility.TransitionType type)
-    { 
+    {
+        rhythm_indicator.SetActive(true);
         Speak("Administer CPR for two minutes.");
+    }
+
+    protected override void TransitionedFrom()
+    {
+        rhythm_indicator.SetActive(false);
     }
 }

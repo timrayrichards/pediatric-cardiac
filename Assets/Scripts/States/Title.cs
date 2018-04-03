@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Title : State
 {
     public Keyboard keyboard;
-    public GameObject rhythm_indicator;
     public GameObject title_window;
     private SimpleTagalong tag_along_script;
     private Billboard billboard_script;
@@ -35,7 +34,6 @@ public class Title : State
         next_state = gameObject.GetComponent<CPR1>();
 
         weight = 0;
-        rhythm_indicator.SetActive(false);
         window.SetActive(true);
         model.SetCurrentState(this);
     }
@@ -103,14 +101,12 @@ public class Title : State
     protected override void TransitionedTo(State prev_state, Utility.TransitionType type)
     {
         shock_dosage.InitDosage();
-        rhythm_indicator.SetActive(false);
         played_voice_prompt = false;
     }
 
     protected override void TransitionedFrom()
     {
         DisableScreenFollow();
-        rhythm_indicator.SetActive(true);
     }
 }
 
