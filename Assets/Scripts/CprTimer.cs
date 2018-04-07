@@ -7,48 +7,51 @@ public class CprTimer : MonoBehaviour
     private AudioClip audio_clip;
     private Text timer_text;
     private bool sound_played;
-    private float timer;
+    private float time;
+    public bool play_sound; // set by others
 
     public void Awake()
     {
-        timer = 120;
+        timer_text = null;
+        play_sound = false;
         sound_played = false;
-        timer_text = GetComponent<Text>();
 
         audio_source = GameObject.Find("Utility/TimeUpAudioSource").GetComponent<AudioSource>();
-        audio_clip = Resources.Load("beep") as AudioClip; 
-
-        AddNavButtonListeners();
+        audio_clip = Resources.Load("timer_up") as AudioClip; 
     }
 
-    private void AddNavButtonListeners()
+    public void SetText(Text text)
     {
-        Button prev_btn = gameObject.transform.parent.Find("Nav/Previous").GetComponent<Button>();
-        Button next_btn = gameObject.transform.parent.Find("Nav/Next").GetComponent<Button>();
-        prev_btn.onClick.AddListener(ResetTimer);
-        next_btn.onClick.AddListener(ResetTimer);
+        timer_text = text;
     }
 
     void Update ()
-    { 
-        if (timer > 0)
+    {
+        if (time > 0)
         {
-            timer_text.text = "Seconds remaining: " + timer.ToString("F0");
-            timer -= Time.deltaTime;
+            timer_text.text = "Seconds remaining: " + GetSecondsRemaining();
+            time -= Time.deltaTime;
         }
         else
         {
+            time = 0; 
             timer_text.text = "CPR step complete";
-            if (!sound_played)
+            if (!sound_played && play_sound)
             {
-                audio_source.PlayOneShot(audio_clip);
-                sound_played = true;
+                audio_source.PlayOneShot(audio_clip); 
             }
+            sound_played = true;
         }
     }
 
-    void ResetTimer()
+    public string GetSecondsRemaining()
     {
-        timer = 120;
+        return time.ToString("F0");
+    }
+
+    public void SetTime(float time)
+    {
+        this.time = time;
+        sound_played = false;
     }
 }

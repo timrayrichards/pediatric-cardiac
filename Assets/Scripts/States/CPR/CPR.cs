@@ -11,7 +11,9 @@ public class CPR : State
     public List<GameObject> tasks = new List<GameObject>();
     public List<GameObject> details;
 
-    private GameObject rhythm_indicator; 
+    private GameObject rhythm_indicator;
+    private CprTimer timer;
+    private Text timer_text; 
 
     /* child must call this after it sets above variables */
     public override void Awake()
@@ -26,6 +28,11 @@ public class CPR : State
         AddTasks();
 
         rhythm_indicator = GameObject.Find("RhythmIndicator");
+
+        timer = Instantiate(Resources.Load("Timer") as GameObject,
+            GameObject.Find("Model/Timers").transform).GetComponent<CprTimer>();
+        timer_text = window.transform.Find("TimerText").GetComponent<Text>();
+        timer.SetText(timer_text);
         
         window.SetActive(false);
     }
@@ -70,11 +77,21 @@ public class CPR : State
     protected override void TransitionedTo(State prev_state, Utility.TransitionType type)
     {
         rhythm_indicator.SetActive(true);
-        Speak("Administer CPR for two minutes.");
+        timer.play_sound = true;  
+
+        if (type == Utility.TransitionType.Previous)
+        {
+            Speak(timer.GetSecondsRemaining() + " seconds remaining.");
+        }
+        else {
+            timer.SetTime(120);
+            Speak("Administer CPR for two minutes.");
+        }
     }
 
     protected override void TransitionedFrom()
     {
         rhythm_indicator.SetActive(false);
+        timer.play_sound = false; 
     }
 }
