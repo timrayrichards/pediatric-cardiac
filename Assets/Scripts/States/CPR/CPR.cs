@@ -12,7 +12,7 @@ public class CPR : State
     public List<GameObject> details;
 
     private GameObject rhythm_indicator;
-    private CprTimer timer;
+    private CprTimer heartbeat_timer;
     private Text timer_text; 
 
     /* child must call this after it sets above variables */
@@ -27,17 +27,18 @@ public class CPR : State
         AddDynamicDetailWindows();
         AddTasks();
 
-        rhythm_indicator = GameObject.Find("RhythmIndicator");
+        rhythm_indicator = GameObject.Find("ScreenOverlay/Heart");
 
-        timer = Instantiate(Resources.Load("Timer") as GameObject,
+        heartbeat_timer = Instantiate(Resources.Load("Timer") as GameObject,
             GameObject.Find("Model/Timers").transform).GetComponent<CprTimer>();
+
         timer_text = window.transform.Find("TimerText").GetComponent<Text>();
-        timer.SetText(timer_text);
+        heartbeat_timer.SetText(timer_text);
         
         window.SetActive(false);
     }
 
-    public void Start()
+    virtual public void Start()
     {
         rhythm_indicator.SetActive(false);
     }
@@ -77,14 +78,23 @@ public class CPR : State
     protected override void TransitionedTo(State prev_state, Utility.TransitionType type)
     {
         rhythm_indicator.SetActive(true);
-        timer.play_sound = true;  
+        heartbeat_timer.play_sound = true;
+        if (type != Utility.TransitionType.Previous)
+        {
+            heartbeat_timer.SetTime(120);
+        }
+        PlayPrompt(type);
+    }
 
+    protected virtual void PlayPrompt(Utility.TransitionType type)
+    {
         if (type == Utility.TransitionType.Previous)
         {
-            Speak(timer.GetSecondsRemaining() + " seconds remaining.");
+            Speak(heartbeat_timer.GetSecondsRemaining() + " seconds remaining.");
         }
-        else {
-            timer.SetTime(120);
+        else
+        {
+            heartbeat_timer.SetTime(120);
             Speak("Administer CPR for two minutes.");
         }
     }
@@ -92,6 +102,6 @@ public class CPR : State
     protected override void TransitionedFrom()
     {
         rhythm_indicator.SetActive(false);
-        timer.play_sound = false; 
+        heartbeat_timer.play_sound = false; 
     }
 }

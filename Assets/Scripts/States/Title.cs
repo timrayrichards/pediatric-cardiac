@@ -8,14 +8,23 @@ public class Title : State
 {
     public Keyboard keyboard;
     public GameObject title_window;
+
     private SimpleTagalong tag_along_script;
     private Billboard billboard_script;
-    private Text input_txt, feedback_txt;
-    private State next_state;
     private SetDetailDosages set_detail_dosages;
     private ShockDosage shock_dosage;
+
+    private Text input_txt, feedback_txt;
+    private State next_state;
+    private GameObject tutorial_text;
+    private Button tutorial_btn; 
+
     private double weight;
-    private bool played_voice_prompt = false;
+
+    bool played_prompt;
+
+    private string prompt;
+    private string prompt1 = "Enter patient weight and press go.";
     
     public override void Awake()
     {
@@ -24,24 +33,37 @@ public class Title : State
         InitWindow(title_window);
         AddNavButtonListeners();
 
-        // find/load private references
         tag_along_script = title_window.transform.parent.GetComponent<SimpleTagalong>();
         billboard_script = title_window.transform.parent.GetComponent<Billboard>(); 
+
         input_txt = window.transform.Find("InputField/UserInput").GetComponent<Text>();
         feedback_txt = window.transform.Find("Feedback").GetComponent<Text>();
+
         set_detail_dosages = GameObject.Find("Model").GetComponent<SetDetailDosages>();
         shock_dosage = GameObject.Find("Model").GetComponent<ShockDosage>();
-        next_state = gameObject.GetComponent<CPR1>();
 
+        next_state = gameObject.GetComponent<CPR1>();
+        tutorial_text = GameObject.Find("ScreenOverlay/Tutorial");
+
+        played_prompt = false; 
+        prompt = prompt1;
         weight = 0;
+
         window.SetActive(true);
         model.SetCurrentState(this);
+    }
+
+    public void Start()
+    {
+        tutorial_text.SetActive(false);
     }
 
     private void AddNavButtonListeners()
     {
         Button submit_btn = window.transform.Find("Submit").GetComponent<Button>();
+        tutorial_btn = window.transform.Find("Tutorial").GetComponent<Button>();
         submit_btn.onClick.AddListener(Submit);
+        tutorial_btn.onClick.AddListener(InitTutorial);
     }
 
     public void Update()
@@ -58,10 +80,10 @@ public class Title : State
         {
             EnableScreenFollow();
         }
-        if (!played_voice_prompt)
+        if (!played_prompt)
         {
-            Speak("Please enter patient weight, and press go.");
-            played_voice_prompt = true; 
+            Speak(prompt);
+            played_prompt = true; 
         }
     }
 
@@ -77,12 +99,31 @@ public class Title : State
         billboard_script.enabled = false;
     }
 
+    private void InitStandard()
+    { 
+        tutorial_btn.interactable = true; 
+        next_state = gameObject.GetComponent<CPR1>();
+        prompt = prompt1;
+        played_prompt = false; 
+    }
+
+    private void InitTutorial()
+    {
+        keyboard.Enter();
+        EnableScreenFollow();
+        tutorial_text.SetActive(true);
+        tutorial_btn.interactable = false; 
+        next_state = gameObject.GetComponent<CPR1Tutorial>();
+        prompt = "This is the start window. Move your head around and you'll see that the window follows your gaze. Move your head until the window is in an ideal spot, and then air tap the white input field to open the keyboard. Use the keyboard to enter a patient weight value and then air tap the go button.";
+        played_prompt = false;
+    }
+
     private void Submit()
     {
         if (!ParseInput()) return;
         shock_dosage.SetWeight(weight);
         set_detail_dosages.SetDosages(weight);
-        feedback_txt.text = "";
+        feedback_txt.text = "Patient weight (kg)";
         Transition(next_state, Utility.TransitionType.Next);
         keyboard.Enter();
     }
@@ -101,11 +142,12 @@ public class Title : State
     protected override void TransitionedTo(State prev_state, Utility.TransitionType type)
     {
         shock_dosage.InitDosage();
-        played_voice_prompt = false;
+        tutorial_text.SetActive(false);
     }
 
     protected override void TransitionedFrom()
     {
+        InitStandard();
         DisableScreenFollow();
     }
 }

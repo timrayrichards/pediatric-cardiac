@@ -9,10 +9,10 @@ public abstract class State : MonoBehaviour
     private AudioSource audio_source;
     private AudioClip audio_clip;
     private TextToSpeech text_to_speech;
-    private Button prev_btn;
-    private Button next_btn;
-    private Button yes_btn;
-    private Button no_btn; 
+    protected Button prev_btn;
+    protected Button next_btn;
+    protected Button yes_btn;
+    protected Button no_btn; 
     private bool sub_window_open;
 
     public virtual void Awake()
@@ -66,10 +66,9 @@ public abstract class State : MonoBehaviour
         text_to_speech.StartSpeaking(words);
     }
 
-    /* override in child for custom behavior 
-     * called at the start and end of a transition */
-    protected virtual void TransitionedTo(State prev_state, Utility.TransitionType type) {}
-    protected virtual void TransitionedFrom() {}
+    /* override in child for custom behavior */
+    protected virtual void TransitionedTo(State prev_state, Utility.TransitionType type) { }
+    protected virtual void TransitionedFrom() { }
 
     protected void AddTransition(State state, Utility.TransitionType type)
     {
@@ -89,8 +88,15 @@ public abstract class State : MonoBehaviour
                 btn = yes_btn; 
                 break;
         }
-        btn.onClick.RemoveAllListeners();
-        btn.onClick.AddListener(delegate { Transition(state, type); });
+        if (state == null)
+        {
+            btn = null; 
+        }
+        else
+        {
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(delegate { Transition(state, type); });
+        }
     }
 
     public void InvokeTransition(Utility.TransitionType type)

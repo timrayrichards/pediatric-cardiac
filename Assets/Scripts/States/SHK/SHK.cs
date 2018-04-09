@@ -29,10 +29,15 @@ public class SHK : State
         if (!shocked && type != Utility.TransitionType.Previous)
         {
             shock_dosage_txt.text = shock_dosage.GetShockDosage(false);
-            Speak(shock_dosage.GetShockDosage(true));
             shock_dosage.AdminShock();
             shocked = true; 
         }
+        PlayPrompt();
+    }
+
+    protected virtual void PlayPrompt()
+    {
+        Speak(shock_dosage.GetShockDosage(true));
     }
 
     protected override void TransitionedFrom()
