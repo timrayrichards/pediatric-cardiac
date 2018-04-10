@@ -6,8 +6,7 @@ public abstract class State : MonoBehaviour
 {
     protected GameObject window;
     protected Model model;
-    private AudioSource audio_source;
-    private AudioClip audio_clip;
+    private AudioSource nav_audio_source;
     private TextToSpeech text_to_speech;
     protected Button prev_btn;
     protected Button next_btn;
@@ -19,9 +18,8 @@ public abstract class State : MonoBehaviour
     {
         // find/load private references
         model = GameObject.Find("Model").GetComponent<Model>();
-        audio_source = GameObject.Find("Utility/NavAudioSource").GetComponent<AudioSource>();
+        nav_audio_source = GameObject.Find("Utility/NavAudioSource").GetComponent<AudioSource>();
         text_to_speech = GameObject.Find("TextToSpeech").GetComponent<TextToSpeech>();
-        audio_clip = Resources.Load("beep") as AudioClip;
 
         sub_window_open = false; 
     }
@@ -161,6 +159,6 @@ public abstract class State : MonoBehaviour
 
     private void PlayTransitionSound()
     {
-        audio_source.PlayOneShot(audio_clip);
+        nav_audio_source.Play();
     }
 }
