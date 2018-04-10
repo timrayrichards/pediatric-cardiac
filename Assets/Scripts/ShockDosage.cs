@@ -44,8 +44,8 @@ public class ShockDosage : MonoBehaviour
             }
             else
             {
-                result = result + "[" + utility.CalculateDosage(4, weight) +
-                ", " + utility.CalculateDosage(10, weight) + "]";
+                result = result + " Between " + utility.CalculateDosage(4, weight) +
+                " and " + utility.CalculateDosage(10, weight);
             }
         }
         if (verbose)
